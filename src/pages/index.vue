@@ -1,5 +1,5 @@
 <template>
-  <div>Home</div>
+  <AccountForm />
 </template>
 
 <script lang="ts" setup>
