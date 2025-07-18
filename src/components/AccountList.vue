@@ -26,12 +26,15 @@
   </v-row>
 
   <!-- Список записей -->
-  <AccountItem
-    v-for="account in accounts"
-    :key="account.id"
-    :account="account"
-    @remove="accountStore.deleteRecord"
-  />
+  <TransitionGroup name="list">
+    <AccountItem
+      v-for="account in accounts"
+      :key="account.id"
+      :account="account"
+      @remove="accountStore.deleteRecord"
+      @update="accountStore.updateRecord"
+    />
+  </TransitionGroup>
 </template>
 
 <script setup lang="ts">

@@ -3,7 +3,7 @@
     <v-row class="mb-3">
       <v-col cols="2">
         <v-text-field
-          label="labelString"
+          label="Метка"
           v-model="labelString"
           density="compact"
           :rules="labelRules"
@@ -12,7 +12,7 @@
       </v-col>
       <v-col cols="2"
         ><v-select
-          label="type"
+          label="Тип"
           v-model="local.type"
           :items="types"
           density="compact"
@@ -21,7 +21,7 @@
       ></v-col>
       <v-col :cols="local.type === 'Локальная' ? 3 : 6">
         <v-text-field
-          label="login"
+          label="Логин"
           density="compact"
           v-model="local.login"
           :rules="loginRules"
@@ -31,7 +31,7 @@
       ></v-col>
       <v-col cols="3" v-if="local.type === 'Локальная'"
         ><v-text-field
-          label="password"
+          label="Пароль"
           density="compact"
           v-model="local.password"
           type="password"
@@ -59,7 +59,7 @@ const props = defineProps<{
   account: Account;
 }>();
 
-const emit = defineEmits(["remove"]);
+const emit = defineEmits(["remove", "update"]);
 
 const local = ref<Account>(JSON.parse(JSON.stringify(props.account)));
 
@@ -92,20 +92,24 @@ const passwordRules = [
   },
 ];
 
-function validateAndSave() {
-  formRef.value.validate();
+const validateAndSave = async () => {
+  await formRef.value.validate();
   if (valid.value) {
     local.value.label = labelString.value
       .split(";")
       .map((tag) => ({ text: tag.trim() }))
       .filter((tag) => tag.text.length > 0);
-    console.log(local.value);
+    if (local.value.type === "LDAP") {
+      local.value.password = null;
+    }
+    emit("update", local.value);
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
 .delete-icon {
+  margin-left: 10px;
   transition: all 0.5s;
   &:hover {
     opacity: 0.7;
