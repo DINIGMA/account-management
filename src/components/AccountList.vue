@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAccountStore } from "@/stores/accountStore";
+import { useAccountStore } from "../stores/accountStore";
 
 const accountStore = useAccountStore();
 

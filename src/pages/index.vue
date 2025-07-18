@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useAccountStore } from "@/stores/accountStore";
+import { useAccountStore } from "../stores/accountStore";
 
 const accountStore = useAccountStore();
 

@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Account, type LabelTag } from "@/types/account";
+import { type Account, type LabelTag } from "../types/account";
 
 const props = defineProps<{
   account: Account;
