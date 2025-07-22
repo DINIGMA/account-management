@@ -26,7 +26,7 @@
   </v-row>
 
   <!-- Список записей -->
-  <TransitionGroup name="list">
+  <TransitionGroup name="list" tag="div">
     <AccountItem
       v-for="account in accounts"
       :key="account.id"
