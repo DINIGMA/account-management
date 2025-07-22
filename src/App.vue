@@ -1,6 +1,13 @@
 <template>
   <v-app>
-    <router-view />
+    <v-layout>
+      <!-- Header -->
+      <AppHeader></AppHeader>
+      <!-- Основной контент -->
+      <v-main>
+        <router-view></router-view>
+      </v-main>
+    </v-layout>
   </v-app>
 </template>
 
